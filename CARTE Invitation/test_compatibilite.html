@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧪 Test de Compatibilité - Carte d'Invitation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        
+        .test-section {
+            background: rgba(255, 255, 255, 0.1);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #4CAF50;
+        }
+        
+        .test-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 5px;
+        }
+        
+        .status {
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        .success { background: #4CAF50; color: white; }
+        .error { background: #f44336; color: white; }
+        .warning { background: #ff9800; color: white; }
+        
+        .animation-test {
+            width: 50px;
+            height: 50px;
+            background: #4CAF50;
+            border-radius: 50%;
+            margin: 10px auto;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .flex-test {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        
+        .flex-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px;
+            border-radius: 5px;
+            flex: 1;
+            margin: 0 5px;
+            text-align: center;
+        }
+        
+        .gradient-test {
+            height: 50px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+        
+        .transform-test {
+            width: 100px;
+            height: 50px;
+            background: #9b59b6;
+            margin: 10px auto;
+            transform: rotate(15deg) scale(1.1);
+            border-radius: 10px;
+        }
+        
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        
+        .browser-info {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .score {
+            text-align: center;
+            font-size: 3rem;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        
+        .recommendation {
+            background: rgba(52, 152, 219, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-left: 5px solid #3498db;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .test-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .status {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Test de Compatibilité</h1>
+        
+        <div class="browser-info">
+            <h3>📊 Informations de votre navigateur :</h3>
+            <p><strong>Navigateur :</strong> <span id="browser-name">Détection...</span></p>
+            <p><strong>Version :</strong> <span id="browser-version">Détection...</span></p>
+            <p><strong>Système :</strong> <span id="os-name">Détection...</span></p>
+            <p><strong>Écran :</strong> <span id="screen-info">Détection...</span></p>
+        </div>
+        
+        <div class="score">
+            Score : <span id="compatibility-score">0</span>/10
+        </div>
+        
+        <div class="test-section">
+            <h3>🎨 Tests CSS</h3>
+            
+            <div class="test-item">
+                <span>Animations CSS</span>
+                <span class="status" id="animation-status">Test...</span>
+            </div>
+            <div class="animation-test"></div>
+            
+            <div class="test-item">
+                <span>Flexbox</span>
+                <span class="status" id="flexbox-status">Test...</span>
+            </div>
+            <div class="flex-test">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+            </div>
+            
+            <div class="test-item">
+                <span>Dégradés CSS</span>
+                <span class="status" id="gradient-status">Test...</span>
+            </div>
+            <div class="gradient-test"></div>
+            
+            <div class="test-item">
+                <span>Transformations</span>
+                <span class="status" id="transform-status">Test...</span>
+            </div>
+            <div class="transform-test"></div>
+        </div>
+        
+        <div class="test-section">
+            <h3>⚙️ Tests JavaScript</h3>
+            
+            <div class="test-item">
+                <span>Événements</span>
+                <span class="status" id="events-status">Test...</span>
+            </div>
+            <button onclick="testEvents()">Cliquez pour tester</button>
+            
+            <div class="test-item">
+                <span>Animations JavaScript</span>
+                <span class="status" id="js-animation-status">Test...</span>
+            </div>
+            <button onclick="testJSAnimation()">Tester animation JS</button>
+            
+            <div class="test-item">
+                <span>Local Storage</span>
+                <span class="status" id="storage-status">Test...</span>
+            </div>
+            
+            <div class="test-item">
+                <span>Canvas</span>
+                <span class="status" id="canvas-status">Test...</span>
+            </div>
+            <canvas id="test-canvas" width="100" height="50" style="border: 1px solid white; margin: 10px auto; display: block;"></canvas>
+        </div>
+        
+        <div class="test-section">
+            <h3>📱 Tests Mobile</h3>
+            
+            <div class="test-item">
+                <span>Écran tactile</span>
+                <span class="status" id="touch-status">Test...</span>
+            </div>
+            
+            <div class="test-item">
+                <span>Viewport responsive</span>
+                <span class="status" id="viewport-status">Test...</span>
+            </div>
+            
+            <div class="test-item">
+                <span>Orientation</span>
+                <span class="status" id="orientation-status">Test...</span>
+            </div>
+        </div>
+        
+        <div class="recommendation">
+            <h3>💡 Recommandation :</h3>
+            <p id="recommendation-text">Analyse en cours...</p>
+        </div>
+        
+        <div style="text-align: center; margin: 30px 0;">
+            <button onclick="window.location.href='index.html'" style="background: #e74c3c; font-size: 18px; padding: 15px 30px;">
+                🚀 TESTER MA CARTE D'INVITATION
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        let score = 0;
+        
+        // Détection du navigateur
+        function detectBrowser() {
+            const userAgent = navigator.userAgent;
+            let browserName = 'Inconnu';
+            let browserVersion = '';
+            
+            if (userAgent.indexOf('Chrome') > -1) {
+                browserName = 'Google Chrome';
+                browserVersion = userAgent.match(/Chrome\/([0-9.]+)/)[1];
+            } else if (userAgent.indexOf('Firefox') > -1) {
+                browserName = 'Mozilla Firefox';
+                browserVersion = userAgent.match(/Firefox\/([0-9.]+)/)[1];
+            } else if (userAgent.indexOf('Safari') > -1) {
+                browserName = 'Apple Safari';
+                browserVersion = userAgent.match(/Version\/([0-9.]+)/)[1];
+            } else if (userAgent.indexOf('Edge') > -1) {
+                browserName = 'Microsoft Edge';
+                browserVersion = userAgent.match(/Edge\/([0-9.]+)/)[1];
+            } else if (userAgent.indexOf('Trident') > -1) {
+                browserName = 'Internet Explorer';
+                browserVersion = userAgent.match(/rv:([0-9.]+)/)[1];
+            }
+            
+            document.getElementById('browser-name').textContent = browserName;
+            document.getElementById('browser-version').textContent = browserVersion;
+            
+            // Système d'exploitation
+            let osName = 'Inconnu';
+            if (userAgent.indexOf('Windows') > -1) osName = 'Windows';
+            else if (userAgent.indexOf('Mac') > -1) osName = 'macOS';
+            else if (userAgent.indexOf('Linux') > -1) osName = 'Linux';
+            else if (userAgent.indexOf('Android') > -1) osName = 'Android';
+            else if (userAgent.indexOf('iOS') > -1) osName = 'iOS';
+            
+            document.getElementById('os-name').textContent = osName;
+            
+            // Informations écran
+            const screenInfo = screen.width + 'x' + screen.height + ' (' + window.innerWidth + 'x' + window.innerHeight + ')';
+            document.getElementById('screen-info').textContent = screenInfo;
+        }
+        
+        // Tests CSS
+        function testCSS() {
+            // Test animations
+            const animationTest = document.querySelector('.animation-test');
+            const computedStyle = window.getComputedStyle(animationTest);
+            if (computedStyle.animationName !== 'none') {
+                setStatus('animation-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('animation-status', 'error', 'Non supporté');
+            }
+            
+            // Test flexbox
+            const flexTest = document.querySelector('.flex-test');
+            if (window.getComputedStyle(flexTest).display === 'flex') {
+                setStatus('flexbox-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('flexbox-status', 'error', 'Non supporté');
+            }
+            
+            // Test dégradés
+            const gradientTest = document.querySelector('.gradient-test');
+            const gradientStyle = window.getComputedStyle(gradientTest).backgroundImage;
+            if (gradientStyle.indexOf('gradient') > -1) {
+                setStatus('gradient-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('gradient-status', 'error', 'Non supporté');
+            }
+            
+            // Test transformations
+            const transformTest = document.querySelector('.transform-test');
+            const transformStyle = window.getComputedStyle(transformTest).transform;
+            if (transformStyle !== 'none') {
+                setStatus('transform-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('transform-status', 'error', 'Non supporté');
+            }
+        }
+        
+        // Tests JavaScript
+        function testJavaScript() {
+            // Test Local Storage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                setStatus('storage-status', 'success', 'Supporté');
+                score++;
+            } catch (e) {
+                setStatus('storage-status', 'error', 'Non supporté');
+            }
+            
+            // Test Canvas
+            const canvas = document.getElementById('test-canvas');
+            if (canvas.getContext) {
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = '#4CAF50';
+                ctx.fillRect(10, 10, 80, 30);
+                ctx.fillStyle = 'white';
+                ctx.font = '12px Arial';
+                ctx.fillText('Canvas OK', 20, 28);
+                setStatus('canvas-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('canvas-status', 'error', 'Non supporté');
+            }
+        }
+        
+        // Tests Mobile
+        function testMobile() {
+            // Test écran tactile
+            if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+                setStatus('touch-status', 'success', 'Tactile détecté');
+                score++;
+            } else {
+                setStatus('touch-status', 'warning', 'Non tactile');
+                score += 0.5;
+            }
+            
+            // Test viewport
+            const viewport = document.querySelector('meta[name=viewport]');
+            if (viewport) {
+                setStatus('viewport-status', 'success', 'Optimisé');
+                score++;
+            } else {
+                setStatus('viewport-status', 'error', 'Non optimisé');
+            }
+            
+            // Test orientation
+            if (screen.orientation || window.orientation !== undefined) {
+                setStatus('orientation-status', 'success', 'Supporté');
+                score++;
+            } else {
+                setStatus('orientation-status', 'warning', 'Partiel');
+                score += 0.5;
+            }
+        }
+        
+        // Fonctions utilitaires
+        function setStatus(elementId, type, text) {
+            const element = document.getElementById(elementId);
+            element.className = 'status ' + type;
+            element.textContent = text;
+        }
+        
+        function testEvents() {
+            setStatus('events-status', 'success', 'Événements OK');
+            score++;
+            updateScore();
+        }
+        
+        function testJSAnimation() {
+            const button = event.target;
+            let pos = 0;
+            const interval = setInterval(function() {
+                pos += 5;
+                button.style.marginLeft = pos + 'px';
+                if (pos >= 50) {
+                    clearInterval(interval);
+                    button.style.marginLeft = '0px';
+                    setStatus('js-animation-status', 'success', 'Animation JS OK');
+                    score++;
+                    updateScore();
+                }
+            }, 50);
+        }
+        
+        function updateScore() {
+            document.getElementById('compatibility-score').textContent = Math.round(score);
+            
+            let recommendation = '';
+            if (score >= 9) {
+                recommendation = '🎉 EXCELLENT ! Votre navigateur supporte parfaitement la carte d\'invitation. Toutes les fonctionnalités seront disponibles !';
+            } else if (score >= 7) {
+                recommendation = '✅ TRÈS BON ! Votre navigateur supporte la plupart des fonctionnalités. L\'expérience sera excellente !';
+            } else if (score >= 5) {
+                recommendation = '⚠️ CORRECT ! Votre navigateur supporte les fonctionnalités de base. Certains effets visuels pourraient être simplifiés.';
+            } else {
+                recommendation = '❌ LIMITÉ ! Votre navigateur est ancien. La carte fonctionnera mais avec une version simplifiée.';
+            }
+            
+            document.getElementById('recommendation-text').textContent = recommendation;
+        }
+        
+        // Lancement des tests
+        document.addEventListener('DOMContentLoaded', function() {
+            detectBrowser();
+            setTimeout(function() {
+                testCSS();
+                testJavaScript();
+                testMobile();
+                updateScore();
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
