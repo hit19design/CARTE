@@ -1,6 +1,33 @@
-/* Custom Birthday Animations and Styles */
+/* Styles d'invitation d'anniversaire avec compatibilité maximale */
 
-/* Typewriter effect */
+/* Reset CSS universel */
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before,
+*:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Polices web sécurisées */
+@font-face {
+    font-family: 'fallback-serif';
+    src: local('Times New Roman'), local('serif');
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'fallback-sans';
+    src: local('Arial'), local('sans-serif');
+    font-display: swap;
+}
+
+/* Effet machine à écrire avec compatibilité */
 .typewriter {
     overflow: hidden;
     border-right: .15em solid #ffd700;
@@ -8,7 +35,19 @@
     margin: 0 auto;
     letter-spacing: .05em;
     width: 0;
+    -webkit-animation: typewriter 3s steps(40, end) 1s forwards, blink-caret .75s step-end infinite;
+    -moz-animation: typewriter 3s steps(40, end) 1s forwards, blink-caret .75s step-end infinite;
     animation: typewriter 3s steps(40, end) 1s forwards, blink-caret .75s step-end infinite;
+}
+
+@-webkit-keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@-moz-keyframes typewriter {
+    from { width: 0; }
+    to { width: 100%; }
 }
 
 @keyframes typewriter {
@@ -16,12 +55,52 @@
     to { width: 100%; }
 }
 
+@-webkit-keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #ffd700; }
+}
+
+@-moz-keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #ffd700; }
+}
+
 @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: #ffd700; }
 }
 
-/* Fireworks and Birthday Effects */
+/* Feux d'artifice et effets d'anniversaire */
+@-webkit-keyframes firework {
+    0% {
+        opacity: 1;
+        -webkit-transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        -webkit-transform: scale(1.5) rotate(360deg);
+    }
+}
+
+@-moz-keyframes firework {
+    0% {
+        opacity: 1;
+        -moz-transform: scale(0) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        -moz-transform: scale(1) rotate(180deg);
+    }
+    100% {
+        opacity: 0;
+        -moz-transform: scale(1.5) rotate(360deg);
+    }
+}
+
 @keyframes firework {
     0% {
         opacity: 1;
@@ -37,6 +116,28 @@
     }
 }
 
+@-webkit-keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        -webkit-transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
+@-moz-keyframes sparkle {
+    0%, 100% {
+        opacity: 0;
+        -moz-transform: scale(0);
+    }
+    50% {
+        opacity: 1;
+        -moz-transform: scale(1);
+    }
+}
+
 @keyframes sparkle {
     0%, 100% {
         opacity: 0;
@@ -45,6 +146,28 @@
     50% {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@-webkit-keyframes confetti {
+    0% {
+        -webkit-transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        -webkit-transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes confetti {
+    0% {
+        -moz-transform: translateY(-100vh) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        -moz-transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
     }
 }
 
@@ -59,7 +182,29 @@
     }
 }
 
-/* Card entrance animation */
+/* Animation d'entrée de carte */
+@-webkit-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -webkit-transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-moz-keyframes fadeInUp {
+    from {
+        opacity: 0;
+        -moz-transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+}
+
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -68,6 +213,34 @@
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@-webkit-keyframes popIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0.8);
+    }
+    50% {
+        -webkit-transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
+@-moz-keyframes popIn {
+    0% {
+        opacity: 0;
+        -moz-transform: scale(0.8);
+    }
+    50% {
+        -moz-transform: scale(1.05);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: scale(1);
     }
 }
 
@@ -85,7 +258,41 @@
     }
 }
 
-/* Portrait reveal animation */
+/* Animation de révélation du portrait */
+@-webkit-keyframes portraitReveal {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(0) rotate(-180deg);
+        -webkit-filter: blur(10px);
+    }
+    50% {
+        -webkit-transform: scale(1.1) rotate(-90deg);
+        -webkit-filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: scale(1) rotate(0deg);
+        -webkit-filter: blur(0px);
+    }
+}
+
+@-moz-keyframes portraitReveal {
+    0% {
+        opacity: 0;
+        -moz-transform: scale(0) rotate(-180deg);
+        -moz-filter: blur(10px);
+    }
+    50% {
+        -moz-transform: scale(1.1) rotate(-90deg);
+        -moz-filter: blur(5px);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: scale(1) rotate(0deg);
+        -moz-filter: blur(0px);
+    }
+}
+
 @keyframes portraitReveal {
     0% {
         opacity: 0;
@@ -103,13 +310,49 @@
     }
 }
 
-/* Title animations */
+/* Animations des titres */
+@-webkit-keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+}
+
+@-moz-keyframes titleGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+}
+
 @keyframes titleGlow {
     0%, 100% {
         text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
     }
     50% {
         text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 215, 0, 0.6);
+    }
+}
+
+@-webkit-keyframes titleBounce {
+    0%, 100% {
+        -webkit-transform: translateY(0px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+    }
+}
+
+@-moz-keyframes titleBounce {
+    0%, 100% {
+        -moz-transform: translateY(0px);
+    }
+    50% {
+        -moz-transform: translateY(-10px);
     }
 }
 
@@ -122,6 +365,24 @@
     }
 }
 
+@-webkit-keyframes nameShine {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
+@-moz-keyframes nameShine {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: 200px 0;
+    }
+}
+
 @keyframes nameShine {
     0% {
         background-position: -200px 0;
@@ -131,7 +392,7 @@
     }
 }
 
-/* Birthday background patterns */
+/* Motifs de fond d'anniversaire */
 .bg-birthday-pattern {
     background-image: 
         radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.3) 3px, transparent 3px),
@@ -147,7 +408,7 @@
     background-size: 20px 20px;
 }
 
-/* Sparkle container */
+/* Conteneur d'étincelles */
 .sparkle-container {
     position: absolute;
     width: 100%;
@@ -161,63 +422,110 @@
     height: 4px;
     background: #ffd700;
     border-radius: 50%;
+    -webkit-animation: sparkle 2s infinite ease-in-out;
+    -moz-animation: sparkle 2s infinite ease-in-out;
     animation: sparkle 2s infinite ease-in-out;
 }
 
-/* Firework particles */
+/* Particules de feux d'artifice */
 .firework-particle {
     position: absolute;
     width: 6px;
     height: 6px;
     border-radius: 50%;
+    -webkit-animation: firework 2s ease-out forwards;
+    -moz-animation: firework 2s ease-out forwards;
     animation: firework 2s ease-out forwards;
 }
 
-/* Card animation on load */
+/* Animation de la carte au chargement */
 #invitation-card {
+    -webkit-animation: popIn 1.5s ease-out;
+    -moz-animation: popIn 1.5s ease-out;
     animation: popIn 1.5s ease-out;
 }
 
-/* Applied animations */
+/* Animations appliquées */
 .animate-portrait-reveal {
+    -webkit-animation: portraitReveal 2s ease-out;
+    -moz-animation: portraitReveal 2s ease-out;
     animation: portraitReveal 2s ease-out;
 }
 
 .animate-title-glow {
+    -webkit-animation: titleGlow 3s ease-in-out infinite;
+    -moz-animation: titleGlow 3s ease-in-out infinite;
     animation: titleGlow 3s ease-in-out infinite;
 }
 
 .animate-title-bounce {
+    -webkit-animation: titleBounce 2s ease-in-out infinite;
+    -moz-animation: titleBounce 2s ease-in-out infinite;
     animation: titleBounce 2s ease-in-out infinite;
 }
 
 .animate-name-shine {
+    background: -webkit-linear-gradient(left, #4a0e4e, #ffd700, #4a0e4e);
+    background: -moz-linear-gradient(left, #4a0e4e, #ffd700, #4a0e4e);
     background: linear-gradient(90deg, #4a0e4e, #ffd700, #4a0e4e);
     background-size: 200px 100%;
+    -webkit-animation: nameShine 3s ease-in-out infinite;
+    -moz-animation: nameShine 3s ease-in-out infinite;
     animation: nameShine 3s ease-in-out infinite;
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    color: transparent;
 }
 
 .animate-pattern {
+    -webkit-animation: confetti 10s linear infinite;
+    -moz-animation: confetti 10s linear infinite;
     animation: confetti 10s linear infinite;
 }
 
 .animate-float {
+    -webkit-animation: float 4s ease-in-out infinite;
+    -moz-animation: float 4s ease-in-out infinite;
     animation: float 4s ease-in-out infinite;
 }
 
 .animate-bounce-slow {
+    -webkit-animation: bounce 3s ease-in-out infinite;
+    -moz-animation: bounce 3s ease-in-out infinite;
     animation: bounce 3s ease-in-out infinite;
 }
 
 .animate-spin-slow {
+    -webkit-animation: spin 4s linear infinite;
+    -moz-animation: spin 4s linear infinite;
     animation: spin 4s linear infinite;
 }
 
 .animate-portrait-bounce {
+    -webkit-animation: portraitBounce 3s ease-in-out infinite;
+    -moz-animation: portraitBounce 3s ease-in-out infinite;
     animation: portraitBounce 3s ease-in-out infinite;
+}
+
+@-webkit-keyframes portraitBounce {
+    0%, 100% {
+        -webkit-transform: translateY(0px) scale(1);
+    }
+    50% {
+        -webkit-transform: translateY(-8px) scale(1.05);
+    }
+}
+
+@-moz-keyframes portraitBounce {
+    0%, 100% {
+        -moz-transform: translateY(0px) scale(1);
+    }
+    50% {
+        -moz-transform: translateY(-8px) scale(1.05);
+    }
 }
 
 @keyframes portraitBounce {
@@ -226,6 +534,24 @@
     }
     50% {
         transform: translateY(-8px) scale(1.05);
+    }
+}
+
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes spin {
+    from {
+        -moz-transform: rotate(0deg);
+    }
+    to {
+        -moz-transform: rotate(360deg);
     }
 }
 
@@ -238,9 +564,35 @@
     }
 }
 
-/* Enhanced portrait animations */
+/* Animations de portrait améliorées */
 .animate-portrait-reveal {
+    -webkit-animation: portraitReveal 3s ease-out, portraitFloat 4s ease-in-out infinite 3s;
+    -moz-animation: portraitReveal 3s ease-out, portraitFloat 4s ease-in-out infinite 3s;
     animation: portraitReveal 3s ease-out, portraitFloat 4s ease-in-out infinite 3s;
+}
+
+@-webkit-keyframes portraitFloat {
+    0%, 100% {
+        -webkit-transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        -webkit-transform: translateY(-5px) rotate(1deg);
+    }
+    66% {
+        -webkit-transform: translateY(5px) rotate(-1deg);
+    }
+}
+
+@-moz-keyframes portraitFloat {
+    0%, 100% {
+        -moz-transform: translateY(0px) rotate(0deg);
+    }
+    33% {
+        -moz-transform: translateY(-5px) rotate(1deg);
+    }
+    66% {
+        -moz-transform: translateY(5px) rotate(-1deg);
+    }
 }
 
 @keyframes portraitFloat {
@@ -255,19 +607,51 @@
     }
 }
 
-/* Enhanced button effects */
+/* Effets de bouton améliorés */
+button {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
 button:hover {
+    -webkit-transform: translateY(-2px) scale(1.05);
+    -moz-transform: translateY(-2px) scale(1.05);
     transform: translateY(-2px) scale(1.05);
 }
 
 button:active {
+    -webkit-transform: translateY(0px) scale(0.98);
+    -moz-transform: translateY(0px) scale(0.98);
     transform: translateY(0px) scale(0.98);
 }
 
-/* Magical glow effects */
+/* Effets de lueur magique */
 .magical-glow {
+    -webkit-box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
+    -moz-box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
+    -webkit-animation: magicalPulse 2s ease-in-out infinite;
+    -moz-animation: magicalPulse 2s ease-in-out infinite;
     animation: magicalPulse 2s ease-in-out infinite;
+}
+
+@-webkit-keyframes magicalPulse {
+    0%, 100% {
+        -webkit-box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
+    }
+    50% {
+        -webkit-box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 20, 147, 0.6);
+    }
+}
+
+@-moz-keyframes magicalPulse {
+    0%, 100% {
+        -moz-box-shadow: 0 0 20px rgba(255, 215, 0, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
+    }
+    50% {
+        -moz-box-shadow: 0 0 30px rgba(255, 215, 0, 0.8), 0 0 60px rgba(255, 20, 147, 0.6);
+    }
 }
 
 @keyframes magicalPulse {
@@ -279,7 +663,25 @@ button:active {
     }
 }
 
-/* Countdown animation */
+/* Animation de compte à rebours */
+@-webkit-keyframes pulse {
+    0%, 100% {
+        -webkit-transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.05);
+    }
+}
+
+@-moz-keyframes pulse {
+    0%, 100% {
+        -moz-transform: scale(1);
+    }
+    50% {
+        -moz-transform: scale(1.05);
+    }
+}
+
 @keyframes pulse {
     0%, 100% {
         transform: scale(1);
@@ -290,26 +692,36 @@ button:active {
 }
 
 #countdown > div {
+    -webkit-animation: pulse 2s infinite;
+    -moz-animation: pulse 2s infinite;
     animation: pulse 2s infinite;
 }
 
 #countdown > div:nth-child(1) {
+    -webkit-animation-delay: 0s;
+    -moz-animation-delay: 0s;
     animation-delay: 0s;
 }
 
 #countdown > div:nth-child(2) {
+    -webkit-animation-delay: 0.5s;
+    -moz-animation-delay: 0.5s;
     animation-delay: 0.5s;
 }
 
 #countdown > div:nth-child(3) {
+    -webkit-animation-delay: 1s;
+    -moz-animation-delay: 1s;
     animation-delay: 1s;
 }
 
 #countdown > div:nth-child(4) {
+    -webkit-animation-delay: 1.5s;
+    -moz-animation-delay: 1.5s;
     animation-delay: 1.5s;
 }
 
-/* Button hover effects */
+/* Effets de survol des boutons */
 button {
     position: relative;
     overflow: hidden;
@@ -322,7 +734,11 @@ button::before {
     left: -100%;
     width: 100%;
     height: 100%;
+    background: -webkit-linear-gradient(left, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: -moz-linear-gradient(left, transparent, rgba(255, 255, 255, 0.2), transparent);
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    -webkit-transition: left 0.5s;
+    -moz-transition: left 0.5s;
     transition: left 0.5s;
 }
 
@@ -330,7 +746,29 @@ button:hover::before {
     left: 100%;
 }
 
-/* Modal animations */
+/* Animations de modal */
+@-webkit-keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        -webkit-transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        -webkit-transform: scale(1);
+    }
+}
+
+@-moz-keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        -moz-transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        -moz-transform: scale(1);
+    }
+}
+
 @keyframes modalFadeIn {
     from {
         opacity: 0;
@@ -343,15 +781,22 @@ button:hover::before {
 }
 
 #confirmation-modal.show {
+    display: -webkit-box !important;
+    display: -moz-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
+    -webkit-animation: modalFadeIn 0.3s ease-out;
+    -moz-animation: modalFadeIn 0.3s ease-out;
     animation: modalFadeIn 0.3s ease-out;
 }
 
 #confirmation-modal.show > div {
+    -webkit-animation: modalFadeIn 0.3s ease-out;
+    -moz-animation: modalFadeIn 0.3s ease-out;
     animation: modalFadeIn 0.3s ease-out;
 }
 
-/* Mobile optimizations */
+/* Optimisations mobiles */
 @media (max-width: 480px) {
     body {
         overflow-y: auto;
@@ -366,22 +811,23 @@ button:hover::before {
     #invitation-card {
         margin: 1rem 0;
         max-width: 100%;
+        width: 95%;
     }
 
     .font-great-vibes {
-        font-size: 2rem !important;
-    }
-
-    h2.font-great-vibes {
         font-size: 1.75rem !important;
     }
 
+    h2.font-great-vibes {
+        font-size: 1.5rem !important;
+    }
+
     .font-dancing {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
     }
 
     .font-playfair {
-        font-size: 2rem !important;
+        font-size: 1.75rem !important;
     }
 
     .min-h-screen {
@@ -389,21 +835,32 @@ button:hover::before {
     }
 
     #portrait-container {
-        width: 120px !important;
-        height: 120px !important;
+        width: 100px !important;
+        height: 100px !important;
     }
 
     button {
-        padding: 1rem !important;
-        font-size: 1rem !important;
+        padding: 0.75rem 1.5rem !important;
+        font-size: 0.9rem !important;
+        min-height: 48px; /* Taille minimale pour les tactiles */
     }
 
     #countdown > div {
-        padding: 0.75rem !important;
+        padding: 0.5rem !important;
+        margin: 0.25rem !important;
     }
 
     #countdown .text-3xl {
-        font-size: 1.5rem !important;
+        font-size: 1.25rem !important;
+    }
+
+    /* Amélioration de la lisibilité sur petit écran */
+    .text-sm {
+        font-size: 0.875rem !important;
+    }
+    
+    .text-lg {
+        font-size: 1rem !important;
     }
 }
 
@@ -418,30 +875,56 @@ button:hover::before {
     }
 
     #invitation-card {
-        margin: 2rem auto;
+        margin: 1.5rem auto;
+        width: 90%;
     }
 
     .font-dancing {
-        font-size: 3rem !important;
+        font-size: 2.5rem !important;
     }
 
     .font-playfair {
-        font-size: 2.5rem !important;
+        font-size: 2rem !important;
+    }
+
+    button {
+        min-height: 44px; /* Taille minimale pour les tactiles */
     }
 }
 
-/* Smooth scrolling */
+/* Défilement fluide */
 html {
     scroll-behavior: smooth;
 }
 
-/* Accessibility focus */
-button:focus {
-    outline: 2px solid #722f37;
+/* Accessibilité focus */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: 2px solid #ffd700;
     outline-offset: 2px;
 }
 
-/* Loading shimmer */
+/* Shimmer de chargement */
+@-webkit-keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@-moz-keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
 @keyframes shimmer {
     0% {
         background-position: -200px 0;
@@ -452,39 +935,76 @@ button:focus {
 }
 
 .loading {
+    background: -webkit-linear-gradient(left, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background: -moz-linear-gradient(left, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
     background-size: 200px 100%;
+    -webkit-animation: shimmer 1.5s infinite;
+    -moz-animation: shimmer 1.5s infinite;
     animation: shimmer 1.5s infinite;
 }
 
-/* Responsive text */
+/* Texte responsif */
 @media (max-width: 768px) {
     .text-4xl {
-        font-size: 2.25rem;
+        font-size: 2rem !important;
     }
 
     .text-5xl {
-        font-size: 3rem;
+        font-size: 2.5rem !important;
     }
 
     .text-3xl {
-        font-size: 1.875rem;
+        font-size: 1.75rem !important;
+    }
+
+    .text-2xl {
+        font-size: 1.5rem !important;
+    }
+
+    .text-xl {
+        font-size: 1.25rem !important;
     }
 }
 
-/* Shadow and gradient text */
+/* Ombre et texte dégradé */
 .shadow-2xl {
+    -webkit-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }
 
 .gradient-text {
+    background: -webkit-linear-gradient(45deg, #722f37, #e8b4a0);
+    background: -moz-linear-gradient(45deg, #722f37, #e8b4a0);
     background: linear-gradient(45deg, #722f37, #e8b4a0);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+    color: transparent;
 }
 
-/* Floating animation */
+/* Animation flottante */
+@-webkit-keyframes float {
+    0%, 100% {
+        -webkit-transform: translateY(0px);
+    }
+    50% {
+        -webkit-transform: translateY(-10px);
+    }
+}
+
+@-moz-keyframes float {
+    0%, 100% {
+        -moz-transform: translateY(0px);
+    }
+    50% {
+        -moz-transform: translateY(-10px);
+    }
+}
+
 @keyframes float {
     0%, 100% {
         transform: translateY(0px);
@@ -495,10 +1015,30 @@ button:focus {
 }
 
 .animate-float {
+    -webkit-animation: float 3s ease-in-out infinite;
+    -moz-animation: float 3s ease-in-out infinite;
     animation: float 3s ease-in-out infinite;
 }
 
-/* Heartbeat for heart icon */
+/* Battement de cœur pour l'icône cœur */
+@-webkit-keyframes heartbeat {
+    0%, 100% {
+        -webkit-transform: scale(1);
+    }
+    50% {
+        -webkit-transform: scale(1.1);
+    }
+}
+
+@-moz-keyframes heartbeat {
+    0%, 100% {
+        -moz-transform: scale(1);
+    }
+    50% {
+        -moz-transform: scale(1.1);
+    }
+}
+
 @keyframes heartbeat {
     0%, 100% {
         transform: scale(1);
@@ -509,5 +1049,190 @@ button:focus {
 }
 
 [data-feather="heart"] {
+    -webkit-animation: heartbeat 2s ease-in-out infinite;
+    -moz-animation: heartbeat 2s ease-in-out infinite;
     animation: heartbeat 2s ease-in-out infinite;
+}
+
+/* Effet de vague (ripple) */
+.ripple {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    -webkit-transform: scale(0);
+    -moz-transform: scale(0);
+    transform: scale(0);
+    -webkit-animation: ripple-animation 0.6s linear;
+    -moz-animation: ripple-animation 0.6s linear;
+    animation: ripple-animation 0.6s linear;
+}
+
+@-webkit-keyframes ripple-animation {
+    to {
+        -webkit-transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@-moz-keyframes ripple-animation {
+    to {
+        -moz-transform: scale(4);
+        opacity: 0;
+    }
+}
+
+@keyframes ripple-animation {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* Fallbacks pour les navigateurs sans support des animations */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        -webkit-animation: none !important;
+        -moz-animation: none !important;
+        animation: none !important;
+        -webkit-transition: none !important;
+        -moz-transition: none !important;
+        transition: none !important;
+    }
+}
+
+/* Support pour les navigateurs très anciens */
+.no-css-animations .animate-float,
+.no-css-animations .animate-spin-slow,
+.no-css-animations .animate-bounce-slow,
+.no-css-animations .animate-portrait-reveal,
+.no-css-animations .animate-title-glow,
+.no-css-animations .animate-title-bounce,
+.no-css-animations .animate-name-shine,
+.no-css-animations .animate-pattern {
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+}
+
+.no-css-animations .typewriter {
+    width: 100% !important;
+    border: none !important;
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    animation: none !important;
+}
+
+.no-css-animations .sparkle {
+    display: none;
+}
+
+/* Compatibilité avec les navigateurs anciens */
+.no-flexbox .flex {
+    display: table;
+    width: 100%;
+}
+
+.no-flexbox .flex > div {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+/* Optimisations pour les appareils faibles */
+@media (max-width: 480px) {
+    .firework-particle {
+        display: none; /* Désactiver les particules sur mobile */
+    }
+    
+    .sparkle {
+        display: none; /* Désactiver les étincelles sur mobile */
+    }
+    
+    /* Réduire les animations coûteuses */
+    .animate-float,
+    .animate-spin-slow,
+    .animate-bounce-slow {
+        -webkit-animation-duration: 6s !important;
+        -moz-animation-duration: 6s !important;
+        animation-duration: 6s !important;
+    }
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    .bg-white {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .text-black {
+        color: #ffffff;
+    }
+    
+    .border-white {
+        border-color: #333333;
+    }
+}
+
+/* Haute résolution */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .floating-img {
+        -webkit-transform: translateZ(0);
+        -moz-transform: translateZ(0);
+        transform: translateZ(0);
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
+}
+
+/* Impression */
+@media print {
+    .sparkle,
+    .firework-particle,
+    .floating-img {
+        display: none;
+    }
+    
+    * {
+        -webkit-animation: none !important;
+        -moz-animation: none !important;
+        animation: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+}
+
+/* Accessibilité améliorée */
+@media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-spin-slow,
+    .animate-bounce-slow,
+    .animate-portrait-reveal,
+    .animate-title-glow,
+    .animate-title-bounce,
+    .animate-name-shine,
+    .animate-pattern,
+    .typewriter {
+        -webkit-animation: none !important;
+        -moz-animation: none !important;
+        animation: none !important;
+    }
+}
+
+/* Support pour les anciens navigateurs Internet Explorer */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    .flex {
+        display: -ms-flexbox;
+    }
+    
+    .justify-center {
+        -ms-flex-pack: center;
+    }
+    
+    .items-center {
+        -ms-flex-align: center;
+    }
 }
