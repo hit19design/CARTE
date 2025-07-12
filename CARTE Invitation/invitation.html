@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Anniversaire - Sophia Dubois</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Outfit:wght@200;300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&family=Allura:wght@400&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Custom CSS -->
+    <style>
+        @keyframes slideInDown {
+            from { transform: translateY(-100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100%); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeInScale {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1) rotate(180deg); }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes typewriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { color: transparent }
+            50% { color: gold; }
+        }
+
+        .animate-slideInDown { animation: slideInDown 1s ease-out; }
+        .animate-slideInUp { animation: slideInUp 1s ease-out; }
+        .animate-fadeInScale { animation: fadeInScale 1s ease-out; }
+        .animate-shimmer { animation: shimmer 2s linear infinite; }
+        .animate-heartbeat { animation: heartbeat 2s ease-in-out infinite; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-sparkle { animation: sparkle 3s ease-in-out infinite; }
+        .animate-gradientMove { animation: gradientMove 3s ease infinite; }
+
+        .shimmer-text {
+            background: linear-gradient(90deg, #ffd700, #ff69b4, #9b59b6, #ffd700);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s linear infinite;
+        }
+
+        /* Enhanced portrait styling */
+        .portrait-container {
+            position: relative;
+            overflow: visible;
+        }
+
+        @keyframes gentlePulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 rgba(255,215,0,0.4); }
+            50% { transform: scale(1.01); box-shadow: 0 0 20px rgba(255,215,0,0.6); }
+        }
+
+        .portrait-hover-effect:hover {
+            animation: gentlePulse 2s ease-in-out infinite;
+        }
+
+        .sparkle-bg {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 4s infinite ease-in-out;
+        }
+
+        .floating-heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .gradient-text {
+            background: linear-gradient(45deg, #ffd700, #ff69b4, #9b59b6);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        .typewriter {
+          overflow: hidden;
+          border-right: .15em solid gold;
+          white-space: nowrap;
+          margin: 0 auto;
+          letter-spacing: .05em;
+          width: 0;
+          opacity: 1;
+          animation:
+            typewriter 3s steps(35, end) 1s forwards,
+            blink-caret .75s step-end 4 forwards;
+        }
+
+        .typewriter.typing {
+            opacity: 1;
+        }
+    </style>
+
+    <!-- Fireworks Effect -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <!-- Tailwind Custom Config -->
+    <!-- Background Music -->
+     <audio id="bgMusic" autoplay loop>
+         <source src="chily_hendeck.mp3" type="audio/mpeg">
+         Votre navigateur ne supporte pas l'élément audio.
+     </audio>
+
+
+    <div class="fixed bottom-4 right-4 z-50">
+        <button id="musicToggle" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-full p-3 shadow-lg hover:scale-110 transition-transform">
+            <i data-feather="music"></i>
+        </button>
+    </div>
+
+    <script>
+        // Auto-play music with user interaction
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('bgMusic');
+            const musicToggle = document.getElementById('musicToggle');
+
+            // Enable audio on first user interaction
+            function enableAudio() {
+                document.removeEventListener('click', enableAudio);
+                music.volume = 0.3;
+                music.play().catch(e => console.log('Auto-play prevented:', e));
+            }
+
+            document.addEventListener('click', enableAudio);
+
+            // Toggle button functionality
+            musicToggle.addEventListener('click', function() {
+                if (music.paused) {
+                    music.play();
+                    feather.replace();
+                } else {
+                    music.pause();
+                    feather.replace();
+                }
+            });
+
+            // Random fireworks every 10-20 seconds
+            setInterval(() => {
+                if (!music.paused) {
+                    confetti({
+                        particleCount: 150,
+                        spread: 70,
+                        origin: { y: 0.6 },
+                        colors: ['#ff0000', '#ffff00', '#00ff00', '#00ffff', '#0000ff', '#ff00ff']
+                    });
+                }
+            }, 10000 + Math.random() * 10000);
+
+            // Big fireworks on page load after delay
+            setTimeout(() => {
+                confetti({
+                    particleCount: 300,
+                    spread: 100,
+                    origin: { y: 0.6 }
+                });
+            }, 2000);
+        });
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'great-vibes': ['Great Vibes', 'cursive'],
+                        'dancing': ['Dancing Script', 'cursive'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'outfit': ['Outfit', 'sans-serif'],
+                        'allura': ['Allura', 'cursive']
+                    },
+                    colors: {
+                        'rose-gold': '#e8b4a0',
+                        'champagne': '#f7e7ce',
+                        'burgundy': '#722f37',
+                        'cream': '#faf8f5',
+                        'gold': '#ffd700',
+                        'deep-purple': '#4a0e4e',
+                        'hot-pink': '#ff1493'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-purple-900 via-pink-800 to-rose-700 font-outfit overflow-x-hidden">
+
+    <!-- Floating Sparkles Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-10">
+        <div id="sparkle-container"></div>
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-10">
+        <div class="floating-heart" style="top: 10%; left: 20%; animation-delay: 0s;">💖</div>
+        <div class="floating-heart" style="top: 30%; right: 15%; animation-delay: 1s;">✨</div>
+        <div class="floating-heart" style="bottom: 20%; left: 10%; animation-delay: 2s;">🌟</div>
+        <div class="floating-heart" style="top: 50%; left: 5%; animation-delay: 1.5s;">💫</div>
+        <div class="floating-heart" style="bottom: 40%; right: 10%; animation-delay: 0.5s;">💝</div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="min-h-screen py-4 px-4 relative z-20">
+        <div class="max-w-4xl mx-auto">
+
+            <!-- Hero Portrait Section - Optimized for better photo display -->
+            <div class="mb-12 animate-slideInDown">
+                <div class="relative w-full aspect-[4/3] max-w-2xl mx-auto">
+                    <!-- Main Portrait Image with elegant framing -->
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="absolute inset-0 rounded-3xl overflow-hidden shadow-2xl ring-4 ring-gold/30 ring-offset-4 ring-offset-purple-900/50">
+                            <img src="https://i.pinimg.com/736x/71/8b/b4/718bb4b061b3b8ec9cad5266a041be82.jpg" 
+                                 alt="La fêtée" 
+                                 class="w-full h-full object-cover object-center transition-all duration-500 hover:scale-105"
+                                 onerror="this.onerror=null;this.src='path/to/default-image.jpg'">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent mix-blend-multiply"></div>
+                        </div>
+                    </div>
+
+                    <!-- Floating Badge with Birthday Text -->
+                    <div class="absolute -top-6 -right-6 bg-gradient-to-br from-gold to-hot-pink p-4 rounded-full shadow-xl z-20 flex flex-col items-center justify-center w-24 h-24 animate-float">
+                        <span class="text-xs text-white font-bold">JOYEUX</span>
+                        <span class="text-2xl text-white font-bold">🎂</span>
+                        <span class="text-xs text-white font-bold">ANNIV!</span>
+                    </div>
+
+                    <!-- Invitation Text Overlay -->
+                    <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6 rounded-b-3xl">
+                        <div class="text-center text-white">
+                            <h1 class="font-allura text-4xl sm:text-6xl text-gold mb-2 animate-heartbeat">
+                                Je vous invite
+                            </h1>
+                            <h2 class="font-dancing text-2xl sm:text-3xl text-white animate-float">
+                                à célébrer avec moi !
+                            </h2>
+                        </div>
+                    </div>
+
+                    <!-- Decorative Elements with Interaction -->
+                    <div class="absolute -left-4 -top-4 text-5xl text-gold animate-sparkle hover:scale-125 transition-transform cursor-pointer" style="animation-delay: 0s;">✨</div>
+                    <div class="absolute -right-4 -bottom-4 text-5xl text-hot-pink animate-sparkle hover:scale-125 transition-transform cursor-pointer" style="animation-delay: 1s;">🎉</div>
+                </div>
+            </div>
+
+            <!-- Main Content Cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+
+                <!-- Event Details Card -->
+                <div class="glass-card rounded-3xl p-6 animate-fadeInScale" style="animation-delay: 0.3s;">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center gradient-text">
+                        🎊 Détails de la Fête 🎊
+                    </h3>
+
+                    <div class="space-y-4">
+                        <!-- Date -->
+                        <div class="flex items-center p-4 bg-gradient-to-r from-gold/20 to-hot-pink/20 rounded-2xl border border-gold/30">
+                            <div class="w-14 h-14 bg-gradient-to-br from-gold to-hot-pink rounded-full flex items-center justify-center mr-4 animate-heartbeat">
+                                <i data-feather="calendar" class="w-7 h-7 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-gold">📅 Date</p>
+                                <p class="text-xl font-bold text-white"> Mercredi 17 septembre 2025</p>
+                            </div>
+                        </div>
+
+                        <!-- Time -->
+                        <div class="flex items-center p-4 bg-gradient-to-r from-hot-pink/20 to-purple-500/20 rounded-2xl border border-hot-pink/30">
+                            <div class="w-14 h-14 bg-gradient-to-br from-hot-pink to-purple-500 rounded-full flex items-center justify-center mr-4 animate-heartbeat">
+                                <i data-feather="clock" class="w-7 h-7 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-hot-pink">🕖 Heure</p>
+                                <p class="text-xl font-bold text-white">19h00</p>
+                            </div>
+                        </div>
+
+                        <!-- Location -->
+                        <div class="flex items-center p-4 bg-gradient-to-r from-purple-500/20 to-rose-500/20 rounded-2xl border border-purple-500/30">
+                            <div class="w-14 h-14 bg-gradient-to-br from-purple-500 to-rose-500 rounded-full flex items-center justify-center mr-4 animate-heartbeat">
+                                <i data-feather="map-pin" class="w-7 h-7 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-purple-300">📍 Lieu</p>
+                                <p class="text-xl font-bold text-white">Tchimbamba Arrêt Colonel</p>
+                            </div>
+                        </div>
+
+                        <!-- Contact -->
+                        <div class="flex items-center p-4 bg-gradient-to-r from-rose-500/20 to-gold/20 rounded-2xl border border-rose-500/30">
+                            <div class="w-14 h-14 bg-gradient-to-br from-rose-500 to-gold rounded-full flex items-center justify-center mr-4 animate-heartbeat">
+                                <i data-feather="phone" class="w-7 h-7 text-white"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-rose-300">📞 Informations</p>
+                                <p class="text-xl font-bold text-white flex items-center space-x-2">
+                                  <i data-feather="" class="w-5 h-5 text-green-400 animate-pulse"></i>
+                                  <a href="https://wa.me/242050833599" target="_blank" class="hover:underline animate-pulse">
+                                    +242050833599
+                                  </a>
+                                    <p class="text-xs text-white/70 mt-1">Cliquez pour appeler ou discuter sur WhatsApp</p>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Countdown Card -->
+                <div class="glass-card rounded-3xl p-6 animate-fadeInScale" style="animation-delay: 0.6s;">
+                    <h3 class="text-2xl font-bold text-white mb-6 text-center gradient-text">
+                        ⏰ Compte à Rebours ⏰
+                    </h3>
+
+                    <div id="countdown" class="grid grid-cols-2 gap-4 text-center">
+                        <div class="bg-gradient-to-br from-gold via-yellow-400 to-orange-500 rounded-2xl p-4 shadow-xl animate-float">
+                            <div id="days" class="text-3xl font-bold text-white">00</div>
+                            <div class="text-sm text-white/90 font-semibold">Jours</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-hot-pink via-pink-400 to-rose-500 rounded-2xl p-4 shadow-xl animate-float" style="animation-delay: 0.2s;">
+                            <div id="hours" class="text-3xl font-bold text-white">00</div>
+                            <div class="text-sm text-white/90 font-semibold">Heures</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-purple-500 via-violet-400 to-indigo-500 rounded-2xl p-4 shadow-xl animate-float" style="animation-delay: 0.4s;">
+                            <div id="minutes" class="text-3xl font-bold text-white">00</div>
+                            <div class="text-sm text-white/90 font-semibold">Minutes</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-rose-500 via-pink-400 to-red-500 rounded-2xl p-4 shadow-xl animate-float" style="animation-delay: 0.6s;">
+                            <div id="seconds" class="text-3xl font-bold text-white">00</div>
+                            <div class="text-sm text-white/90 font-semibold">Secondes</div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <p class="text-white/80 font-medium">
+                            Plus que quelques instants avant la célébration ! 🎉
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Share Button -->
+            <div class="glass-card rounded-3xl p-6 animate-slideInUp" style="animation-delay: 0.9s;">
+                <button id="whatsapp-btn" class="w-full bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 text-white py-5 rounded-3xl font-bold text-xl shadow-2xl transform transition-all duration-300 hover:scale-105 active:scale-95 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer"></div>
+                    <i data-feather="share-2" class="w-7 h-7 inline mr-3"></i>
+                    <span class="relative z-10">Partager cette invitation magique</span>
+                </button>
+                <p class="text-center text-white/70 text-sm mt-4 font-medium">
+                    Partagez cette invitation spectaculaire avec vos proches ! ✨
+                </p>
+            </div>
+
+            <!--Pied de page -->
+            <div class="text-center mt-8 animate-fadeInScale" style="animation-delay: 1.2s;">
+                <div class="glass-card rounded-3xl p-4">
+                    <p class="shimmer-text font-bold text-xl">
+                        ✨ Conçu et réalisé par Valeque ✨
+                    </p>
+                    <p class="text-white/60 text-sm mt-2">
+                        Des invitations qui marquent les cœurs
+                    </p>
+                    <p class="text-white/60 text-sm mt-2 -ml-3  ">
+                        📞 <a href="https://wa.me/242050833599" class="underline">Contacter le créateur pour votre carte</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialiser les icônes Feather
+        feather.replace();
+
+        // Effet machine à écrire amélioré
+        setTimeout(() => {
+            const typewriterText = document.getElementById('typewriter-text');
+            if (typewriterText) {
+                const text = typewriterText.textContent;
+                typewriterText.textContent = '';
+                typewriterText.classList.add('typing');
+
+                let i = 0;
+                function typeWriter() {
+                    if (i < text.length) {
+                        typewriterText.textContent += text.charAt(i);
+                        i++;
+                        setTimeout(typeWriter, 80); // Vitesse de frappe
+                    } else {
+                        // Faire clignoter le curseur pendant 3 secondes puis l'enlever
+                        setTimeout(() => {
+                            typewriterText.style.borderRight = 'none';
+                        }, 3000);
+                    }
+                }
+
+                typeWriter();
+            }
+        }, 2000); // Délai avant le début de l'effet
+
+        // Event date and time
+        const eventDate = new Date('2025-09-17T19:00:00');
+
+        // Create dynamic sparkles
+        function createSparkles() {
+            const container = document.getElementById('sparkle-container');
+            for (let i = 0; i < 50; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'sparkle-bg';
+                sparkle.style.left = Math.random() * 100 + '%';
+                sparkle.style.top = Math.random() * 100 + '%';
+                sparkle.style.animationDelay = Math.random() * 4 + 's';
+                sparkle.style.animationDuration = (Math.random() * 3 + 2) + 's';
+                container.appendChild(sparkle);
+            }
+        }
+
+        createSparkles();
+
+        // Compte à rebours
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = eventDate.getTime() - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = `
+                    <div class="col-span-2 text-center">
+                        <div class="bg-gradient-to-r from-gold to-hot-pink rounded-2xl p-6 shadow-xl">
+                            <p class="text-2xl font-bold text-white">🎉 C'est l'heure de faire la fête ! 🎉</p>
+                        </div>
+                    </div>
+                `;
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // WhatsApp Share
+        document.getElementById('whatsapp-btn').addEventListener('click', function() {
+            const invitationLink = window.location.href;
+            const message = encodeURIComponent(
+                `🎂✨ INVITATION SPÉCIALE - ANNIVERSAIRE ! ✨🎂\n\n` +
+                `Je vous invite à célébrer mon anniversaire dans une ambiance magique !\n\n` +
+                `🗓️ DATE: Mercredi 17 septembre 2025\n` +
+                `⏰ HEURE: 19h00\n` +
+                `📍 LIEU: Tchimbamba Arrêt Colonel\n` +
+                `📞 INFOS: +242050833599
+\n\n` +
+                `🔗 Invitation interactive: ${invitationLink}\n\n` +
+                `J'espère vous voir nombreux pour cette célébration inoubliable ! 🎉🎊\n\n` +
+                `✨ Conçu et réalisé par Valeque ✨`
+            );
+
+            const whatsappUrl = `https://wa.me/?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+
+            // Feedback animation with fireworks
+            const originalContent = this.innerHTML;
+            this.innerHTML = `
+                <i data-feather="check-circle" class="w-7 h-7 inline mr-3"></i>
+                <span class="relative z-10">Invitation partagée avec succès ! 🎉</span>
+            `;
+            feather.replace();
+
+            // Launch fireworks when sharing
+            confetti({
+                particleCount: 200,
+                spread: 90,
+                origin: { y: 0.6 }
+            });
+
+            setTimeout(() => {
+                this.innerHTML = originalContent;
+                feather.replace();
+            }, 4000);
+        });
+
+        // Add interactive hover effects
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+                this.style.transition = 'all 0.3s ease';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+
+</body>
+</html>
+ hk 
+    </script>
+</body>
+</html>

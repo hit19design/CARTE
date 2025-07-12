@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation Anniversaire - Sophia Dubois</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes:wght@400&family=Outfit:wght@200;300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- Custom CSS -->
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        @keyframes sparkle {
+            0%, 100% { opacity: 0; transform: scale(0); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px rgba(255, 215, 0, 0.8); }
+            50% { text-shadow: 0 0 20px rgba(255, 215, 0, 1), 0 0 30px rgba(255, 20, 147, 0.8); }
+        }
+        
+        .animate-fadeInUp { animation: fadeInUp 1s ease-out; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        .animate-sparkle { animation: sparkle 2s infinite ease-in-out; }
+        .animate-glow { animation: glow 2s ease-in-out infinite; }
+        
+        .gradient-bg {
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .sparkle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #ffd700;
+            border-radius: 50%;
+            animation: sparkle 3s infinite ease-in-out;
+        }
+    </style>
+    
+    <!-- Tailwind Custom Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'great-vibes': ['Great Vibes', 'cursive'],
+                        'dancing': ['Dancing Script', 'cursive'],
+                        'playfair': ['Playfair Display', 'serif'],
+                        'outfit': ['Outfit', 'sans-serif']
+                    },
+                    colors: {
+                        'rose-gold': '#e8b4a0',
+                        'champagne': '#f7e7ce',
+                        'burgundy': '#722f37',
+                        'cream': '#faf8f5',
+                        'gold': '#ffd700',
+                        'deep-purple': '#4a0e4e',
+                        'hot-pink': '#ff1493'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-deep-purple via-hot-pink to-burgundy font-outfit overflow-x-hidden">
+    <!-- Fireworks Canvas -->
+    <canvas id="fireworks-canvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
+    
+    <!-- Sparkle Effects -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-40">
+        <div class="sparkle-container"></div>
+    </div>
+
+    <!-- Background Decorative Elements -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none z-30">
+        <div class="absolute top-10 left-10 w-32 h-32 bg-gold rounded-full opacity-30 animate-float"></div>
+        <div class="absolute top-1/3 right-20 w-24 h-24 bg-hot-pink rounded-full opacity-40 animate-bounce-slow"></div>
+        <div class="absolute bottom-20 left-1/4 w-20 h-20 bg-champagne rounded-full opacity-35 animate-float"></div>
+        <div class="absolute bottom-32 right-10 w-16 h-16 bg-gold rounded-full opacity-30 animate-bounce-slow"></div>
+        <div class="absolute top-1/2 left-1/2 w-40 h-40 bg-rose-gold rounded-full opacity-20 animate-float transform -translate-x-1/2 -translate-y-1/2"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container mx-auto px-2 py-4 relative z-20 min-h-screen">
+        <!-- Birthday Invitation Card -->
+        <div id="invitation-card" class="max-w-lg mx-auto my-4">
+            <div class="bg-gradient-to-br from-white via-cream to-champagne rounded-3xl shadow-2xl overflow-hidden transform transition-all duration-1000 hover:scale-105 border-4 border-gold">
+                <!-- Header Section with Portrait -->
+                <div class="relative bg-gradient-to-br from-hot-pink via-deep-purple to-burgundy p-8 text-center overflow-hidden">
+                    <!-- Animated Background Pattern -->
+                    <div class="absolute inset-0 bg-birthday-pattern opacity-20 animate-pattern"></div>
+                    
+                    <!-- Portrait Container -->
+                    <div class="relative z-10 mb-6">
+                        <div id="portrait-container" class="w-40 h-40 mx-auto rounded-full overflow-hidden border-4 border-gold shadow-2xl transform transition-all duration-1000 animate-portrait-bounce relative">
+                            <img src="Model%20Ai.jpeg" 
+                                 alt="Sophia Dubois" 
+                                 class="w-full h-full object-cover animate-portrait-reveal"
+                                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDQwMCA0MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9InVybCgjZ3JhZGllbnQpIi8+PGNpcmNsZSBjeD0iMjAwIiBjeT0iMTQwIiByPSI4MCIgZmlsbD0iIzgwNTMzMSIvPjxjaXJjbGUgY3g9IjE3MCIgY3k9IjEyMCIgcj0iMTUiIGZpbGw9IiNGRkYiLz48Y2lyY2xlIGN4PSIyMzAiIGN5PSIxMjAiIHI9IjE1IiBmaWxsPSIjRkZGIi8+PGNpcmNsZSBjeD0iMTcwIiBjeT0iMTIwIiByPSI2IiBmaWxsPSIjMDAwIi8+PGNpcmNsZSBjeD0iMjMwIiBjeT0iMTIwIiByPSI2IiBmaWxsPSIjMDAwIi8+PHBhdGggZD0iTTE1MCA4MFEyMDAgNjAgMjUwIDgwUTI3MCAyMDAgMjUwIDI1MFEyMDAgMjkwIDE1MCAyNTBRMTMwIDIwMCAxNTAgODBaIiBmaWxsPSIjMDAwIi8+PGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE3MCIgcng9IjMwIiByeT0iMTUiIGZpbGw9IiNEQzI2MjYiLz48ZWxsaXBzZSBjeD0iMTUwIiBjeT0iMTQwIiByeD0iMjAiIHJ5PSIxNSIgZmlsbD0iI0ZGNjlCNCIvPjxlbGxpcHNlIGN4PSIyNTAiIGN5PSIxNDAiIHJ4PSIyMCIgcnk9IjE1IiBmaWxsPSIjRkY2OUI0Ii8+PGVsbGlwc2UgY3g9IjIwMCIgY3k9IjE1MCIgcng9IjEwIiByeT0iNSIgZmlsbD0iIzAwMCIvPjxkZWZzPjxsaW5lYXJHcmFkaWVudCBpZD0iZ3JhZGllbnQiIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIxIj48c3RvcCBvZmZzZXQ9IjAlIiBzdG9wLWNvbG9yPSIjNzIyZjM3Ii8+PHN0b3Agb2Zmc2V0PSI1MCUiIHN0b3AtY29sb3I9IiNmZjE0OTMiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmQ3MDAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48L3N2Zz4='">
+                        </div>
+                        <!-- Animated decorative elements around portrait -->
+                        <div class="absolute -top-2 -right-2 text-2xl animate-bounce">🎉</div>
+                        <div class="absolute -bottom-2 -left-2 text-2xl animate-pulse">✨</div>
+                        <div class="absolute top-0 left-0 text-xl animate-spin-slow">🌟</div>
+                        <div class="absolute bottom-0 right-0 text-xl animate-bounce">🎂</div>
+                    </div>
+                    
+                    <!-- Birthday Title -->
+                    <div class="relative z-10">
+                        <h1 class="font-dancing text-5xl md:text-6xl text-white mb-2 animate-title-glow">
+                            Joyeux
+                        </h1>
+                        <h1 class="font-dancing text-6xl md:text-7xl text-gold mb-4 animate-title-bounce">
+                            Anniversaire
+                        </h1>
+                        <div class="flex justify-center items-center space-x-2 mb-4">
+                            <div class="w-8 h-1 bg-gold rounded-full animate-pulse"></div>
+                            <div class="text-4xl animate-bounce">🎂</div>
+                            <div class="w-8 h-1 bg-gold rounded-full animate-pulse"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Birthday Guest Section -->
+                <div class="px-8 py-6 text-center bg-gradient-to-r from-cream to-champagne relative overflow-hidden">
+                    <!-- Floating birthday elements -->
+                    <div class="absolute top-2 left-4 text-3xl animate-bounce-slow opacity-70">🎁</div>
+                    <div class="absolute top-4 right-6 text-2xl animate-float opacity-70">🎈</div>
+                    <div class="absolute bottom-2 left-6 text-2xl animate-pulse opacity-70">🧁</div>
+                    
+                    <div class="relative z-10">
+                        <div class="mb-4">
+                            <div class="text-5xl mb-3 animate-bounce">🎉</div>
+                            <p class="text-burgundy text-lg mb-2 font-bold">C'est l'anniversaire de</p>
+                        </div>
+                        <h2 class="font-playfair text-5xl md:text-6xl text-deep-purple mb-4 font-bold animate-name-shine transform hover:scale-105 transition-all duration-300">
+                            Sophia Dubois
+                        </h2>
+                        <div class="flex justify-center items-center space-x-3 mb-4">
+                            <div class="text-3xl animate-spin-slow">🌟</div>
+                            <p class="text-burgundy text-xl font-bold bg-gradient-to-r from-gold to-hot-pink bg-clip-text text-transparent">
+                                Venez célébrer avec nous
+                            </p>
+                            <div class="text-3xl animate-spin-slow">🌟</div>
+                        </div>
+                        <div class="text-2xl font-bold text-gold mb-2">Une fête inoubliable!</div>
+                    </div>
+                </div>
+
+                <!-- Party Details -->
+                <div class="px-4 sm:px-8 py-6 space-y-4 sm:space-y-6 bg-white">
+                    <!-- Date -->
+                    <div class="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gradient-to-r from-gold/10 to-hot-pink/10 rounded-xl border border-gold/20">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-gold to-hot-pink rounded-full flex items-center justify-center shadow-lg">
+                            <i data-feather="calendar" class="w-6 h-6 sm:w-7 sm:h-7 text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-burgundy text-xs sm:text-sm font-semibold">📅 Date de la fête</p>
+                            <p class="text-deep-purple font-bold text-base sm:text-lg">Samedi 6 juillet 2025</p>
+                        </div>
+                    </div>
+
+                    <!-- Time -->
+                    <div class="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gradient-to-r from-hot-pink/10 to-deep-purple/10 rounded-xl border border-hot-pink/20">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-hot-pink to-deep-purple rounded-full flex items-center justify-center shadow-lg">
+                            <i data-feather="clock" class="w-6 h-6 sm:w-7 sm:h-7 text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-burgundy text-xs sm:text-sm font-semibold">🕖 Heure de la célébration</p>
+                            <p class="text-deep-purple font-bold text-base sm:text-lg">19h00</p>
+                        </div>
+                    </div>
+
+                    <!-- Location -->
+                    <div class="flex items-center space-x-3 sm:space-x-4 p-3 sm:p-4 bg-gradient-to-r from-deep-purple/10 to-gold/10 rounded-xl border border-deep-purple/20">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-deep-purple to-gold rounded-full flex items-center justify-center shadow-lg">
+                            <i data-feather="map-pin" class="w-6 h-6 sm:w-7 sm:h-7 text-white"></i>
+                        </div>
+                        <div>
+                            <p class="text-burgundy text-xs sm:text-sm font-semibold">📍 Lieu de la fête</p>
+                            <p class="text-deep-purple font-bold text-base sm:text-lg">123 Avenue de la Fête</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Birthday Countdown -->
+                <div class="px-4 sm:px-8 py-6 bg-gradient-to-br from-gold/20 via-hot-pink/20 to-deep-purple/20">
+                    <div class="text-center mb-4 sm:mb-6">
+                        <h3 class="text-deep-purple font-bold text-lg sm:text-xl mb-2">🎊 Compte à rebours de la fête 🎊</h3>
+                        <p class="text-burgundy font-medium text-sm sm:text-base">Plus que quelques jours avant la célébration!</p>
+                    </div>
+                    <div id="countdown" class="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                        <div class="bg-gradient-to-br from-gold to-hot-pink rounded-lg sm:rounded-xl p-2 sm:p-4 shadow-lg transform hover:scale-105 transition-all duration-300">
+                            <div id="days" class="text-xl sm:text-3xl font-bold text-white">00</div>
+                            <div class="text-xs text-white/90 font-semibold">Jours</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-hot-pink to-deep-purple rounded-lg sm:rounded-xl p-2 sm:p-4 shadow-lg transform hover:scale-105 transition-all duration-300">
+                            <div id="hours" class="text-xl sm:text-3xl font-bold text-white">00</div>
+                            <div class="text-xs text-white/90 font-semibold">Heures</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-deep-purple to-burgundy rounded-lg sm:rounded-xl p-2 sm:p-4 shadow-lg transform hover:scale-105 transition-all duration-300">
+                            <div id="minutes" class="text-xl sm:text-3xl font-bold text-white">00</div>
+                            <div class="text-xs text-white/90 font-semibold">Minutes</div>
+                        </div>
+                        <div class="bg-gradient-to-br from-burgundy to-gold rounded-lg sm:rounded-xl p-2 sm:p-4 shadow-lg transform hover:scale-105 transition-all duration-300">
+                            <div id="seconds" class="text-xl sm:text-3xl font-bold text-white">00</div>
+                            <div class="text-xs text-white/90 font-semibold">Secondes</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Share Button -->
+                <div class="px-4 sm:px-8 py-6 bg-gradient-to-r from-green-50 to-green-100">
+                    <button id="whatsapp-btn" class="w-full bg-gradient-to-r from-green-400 via-green-500 to-green-600 text-white py-4 sm:py-5 rounded-2xl font-bold text-lg sm:text-xl shadow-2xl hover:shadow-xl transform transition-all duration-300 hover:scale-105 active:scale-95 border-2 border-green-300 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 transform translate-x-full group-hover:translate-x-[-200%] transition-transform duration-1000"></div>
+                        <i data-feather="share-2" class="w-6 h-6 sm:w-7 sm:h-7 inline mr-2 sm:mr-3"></i>
+                        <span class="relative z-10">Partager sur WhatsApp</span>
+                    </button>
+                    <p class="text-center text-green-700 text-xs sm:text-sm mt-3 font-medium">
+                        Invitez vos amis à cette fête d'anniversaire spectaculaire!
+                    </p>
+                </div>
+
+                <!-- Footer -->
+                <div class="px-4 sm:px-8 py-4 sm:py-6 bg-gradient-to-r from-deep-purple via-burgundy to-hot-pink text-center relative overflow-hidden">
+                    <!-- Animated background elements -->
+                    <div class="absolute inset-0 bg-birthday-pattern opacity-30"></div>
+                    <div class="absolute top-2 left-4 text-xl sm:text-2xl animate-bounce opacity-70">⭐</div>
+                    <div class="absolute top-2 right-4 text-xl sm:text-2xl animate-pulse opacity-70">✨</div>
+                    <div class="absolute bottom-2 left-1/2 transform -translate-x-1/2 text-lg sm:text-xl animate-spin-slow opacity-70">🌟</div>
+                    
+                    <div class="relative z-10">
+                        <p class="text-gold text-base sm:text-lg font-bold mb-2 animate-title-glow">
+                            ✨ Créé avec amour par Valeque ✨
+                        </p>
+                        <p class="text-champagne text-xs sm:text-sm font-medium">
+                            Cartes d'invitation personnalisées et magiques
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
